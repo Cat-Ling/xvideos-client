@@ -21,9 +21,9 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
+          - run: cd ..   
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - run: cd ..    
+          cache: 'npm' 
       - run: npm ci
       - run: npm run make
       # - run: npm start 
