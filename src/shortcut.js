@@ -115,9 +115,9 @@ function registerShortcuts(mainWindow) {
 
   globalShortcut.register('F1', () => {
     if (isMainWindowFocused()) {
-      mainWindow.loadURL('https://github.com/Cat-Ling/xvideos-client');
+      mainWindow.loadURL('https://github.com/Cat-Ling/xvideos-client?tab=readme-ov-file#keyboard-shortcuts');
     } else if (isurlbarWindowFocused()) {
-      urlbarWindow.loadURL('https://github.com/Cat-Ling/xvideos-client');
+      urlbarWindow.loadURL('https://github.com/Cat-Ling/xvideos-client?tab=readme-ov-file#keyboard-shortcuts');
     }
   });
 
