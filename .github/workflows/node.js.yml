@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: pwd
+      - run: cd ..    
       - run: npm ci
       - run: npm run make
       # - run: npm start 
@@ -41,7 +41,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: pwd
+      - run: cd ..
       - run: npm ci
       - run: npm run make
 
@@ -58,6 +58,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: pwd
+      - run: cd ..
       - run: npm ci
       - run: npm run make
