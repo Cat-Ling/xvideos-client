@@ -4,11 +4,13 @@
 
 This is a wrapper for XVIDEOS that bypasses regional restrictions by using XVIDEOS' private domains to connect to the servers. **It is made for countries like India where pornography is restricted but not illegal by law.**
 
-## Notice : There are always some risks associated with unknown proxies. Please do not login into your account. Or only use an account you can afford to lose in the worst case scenario.
+### Notice : There are always some risks associated with unknown proxies. Please do not login into your account. Or only use an account you can afford to lose in the worst case scenario.
 I'm currently developing an alternative version of this project. Should it see the light of the day, it'll use TOR rather than SOCKS proxies.
 
 # Features
-
+- Portable - All your data stays in the XVideos Client directory, leaving less traces behind on the system it is being run on.
+**All of the data, including session, cache and cookies is saved in the `'/xdata'` directory. Make sure you delete it before redistributing the program.**
+  
 - SOCKS5 - A list of proxies is feteched from [monosans/proxy-list](https://raw.githubusercontent.com/monosans/proxy-list/main/proxies_anonymous/socks5.txt) and a random proxy is chosen every time. 
 - The client contains some __hidden XVideos proxy domains__ that are only accessible through this client.
   You can cycle through proxies by pressing __CTRL+SPACE__ if the page fails to load.
