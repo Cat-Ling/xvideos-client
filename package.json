@@ -7,9 +7,10 @@
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "npm run linux-build && npm run windows-build",
+    "make": "npm run linux-build && npm run windows-build && npm run macos-build",
     "linux-build": "electron-forge package --platform=linux --arch=x64",
-    "windows-build": "electron-forge package --platform=win32 --arch=x64"
+    "windows-build": "electron-forge package --platform=win32 --arch=x64",
+    "macos-build": "electron-forge make --skip-package --platform=darwin --arch=x64"
   },
   "author": "Cat-Ling",
   "license": "GPL-3.0",
