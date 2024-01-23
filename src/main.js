@@ -8,23 +8,31 @@
 */
 const { app, BrowserWindow, session } = require('electron');
 const path = require('path');
+const { 
+debuggerOption,
+proxyEnable,
+SecureDnsEnable,
+AdBlockEnable
+ } = require('config');
 const registerShortcuts = require('./shortcut');
-const enableDebugger = require('./debugger');
-const { createAdblocker, disableBlocking, serializeAndDeserialize } = require('./adblock');
-const { GetProxy, ConnectProxy } = require('./proxy');
-async function initAdblocker() {
-  const adblocker = await createAdblocker();
-}
-  initAdblocker();
 
-// Enable it if you want your console to go woooooosh!!!.
-const debuggerOption = false;
+
 
 // Set userData path to the current directory (only enable before building app)
 const userDataPath = path.join(process.cwd(), 'xdata');
 app.setPath('userData', userDataPath);
 
 
+//AdBlock Config
+if (AdBlockEnable) {
+const { createAdblocker, disableBlocking, serializeAndDeserialize } = require('./adblock');
+async function initAdblocker() {
+  const adblocker = await createAdblocker();
+}
+  initAdblocker();
+} else {
+  console.log('AdBlock is disabled.')
+} 
 
 
 app.whenReady().then(() => {
@@ -73,6 +81,8 @@ session.defaultSession.loadExtension(extensionPath).then(({ id }) => {
  * Please keep in mind the risks before you change the servers, especially if you're browsing
  * through hidden urls, as they'll most probably be detected by your ISP and then get blocked.
 */
+
+    if (SecureDnsEnable) {
   app.configureHostResolver({
     secureDnsMode: 'secure',
     secureDnsServers: [
@@ -80,7 +90,14 @@ session.defaultSession.loadExtension(extensionPath).then(({ id }) => {
       'https://doh.dns.sb/dns-query',
     ],
   });
-
+  console.log('Secure DNS is Enabled')
+        } else {
+  app.configureHostResolver({
+    secureDnsMode: 'automatic',
+  });
+  console.log('Secure DNS is Disabled')
+  console.log('System DNS Settings will be used.')
+      }
 
 /* User-Agent Configuration
 
@@ -108,8 +125,14 @@ mainWindow.maximize();
   mainWindow.on('closed', () => {
     app.quit();
   });
-  GetProxy()
-  ConnectProxy(mainWindow);
+  if (proxyEnable) {
+    console.log('Proxy is enabled.')
+    const { GetProxy, ConnectProxy } = require('./proxy');
+    GetProxy();
+    ConnectProxy(mainWindow)
+  } else {
+    console.log('Proxy has been disabled.')
+  }
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
@@ -127,8 +150,14 @@ mainWindow.maximize();
     event.preventDefault();
   });
 
+  // This is about to get messy.
+  if (debuggerOption) {
+  const enableDebugger = require('./debugger');
+  console.log('Debugger is enabled.')
   enableDebugger(mainWindow, debuggerOption);
-
+} else {
+  console.log('Debugger is disabled.')
+}
   // Register shortcuts from shortcut.js
   registerShortcuts(mainWindow);
 });
