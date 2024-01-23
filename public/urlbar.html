@@ -1,0 +1,18 @@
+<!doctypehtml><html lang=en><meta charset=UTF-8><meta content="width=device-width,initial-scale=1"name=viewport><title>Search</title><style>body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background-color:#f5f5f5;margin:0;display:flex;align-items:center;justify-content:center;height:100vh}#urlContainer{background-color:#fff;padding:10px;border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,.1);display:flex;align-items:center}#urlInput{flex:1;border:1px solid #d1d1d1;padding:8px;border-radius:3px;margin-right:8px;font-size:14px}#submitBtn{background-color:#007bff;color:#fff;border:none;padding:8px 12px;border-radius:3px;cursor:pointer;font-size:14px}</style><div id=urlContainer><input autofocus id=urlInput placeholder="Enter URL or search term"> <button id=submitBtn onclick=submitUrl()>Go</button></div><script>function submitUrl() {
+  let urlInput = document.getElementById('urlInput').value.trim();
+
+  const isURL = /^(http|https):\/\/\S+$/.test(urlInput) || /\.(com|net|org|io|xyz|co|gov|edu|ai|app|blog|ca|dev|fm|io|me|mobi|name|tv|us|co\.uk|ac\.uk|org\.uk|gov\.uk|net\.uk|kr|jp|cn|in|us|br|au|fr|de|it|es|nl|se|no|fi|dk|co\.jp)$/.test(urlInput);
+
+  if (isURL) {
+    window.location.href = isURL[0] === 'http' || isURL[0] === 'https' ? urlInput : 'http://' + urlInput;
+  } else {
+    const googleSearchURL = 'https://www.google.com/search?q=' + encodeURIComponent(urlInput);
+    window.location.href = googleSearchURL;
+  }
+}
+
+document.getElementById('urlContainer').addEventListener('keyup', function (event) {
+  if (event.key === 'Enter') {
+    submitUrl();
+  }
+});</script>
