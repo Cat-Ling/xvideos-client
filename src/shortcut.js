@@ -15,7 +15,7 @@ function createurlbarWindow(mainWindow) {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true,
+      nodeIntegration: false,
     },
     parent: mainWindow,
     modal: false,
