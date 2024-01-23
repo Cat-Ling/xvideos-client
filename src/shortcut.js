@@ -34,6 +34,22 @@ function registerShortcuts(mainWindow) {
   const isMainWindowFocused = () => mainWindow && mainWindow.isFocused();
   const isurlbarWindowFocused = () => urlbarWindow && urlbarWindow.isFocused();
 
+  // Function to unregister shortcuts when the application loses focus
+  const unregisterShortcutsOnBlur = () => {
+    globalShortcut.unregister('Control+R');
+    globalShortcut.unregister('Control+Shift+R');
+    globalShortcut.unregister('Control+Space');
+    globalShortcut.unregister('Control+S');
+    globalShortcut.unregister('Control+W');
+    globalShortcut.unregister('Control+Q');
+    globalShortcut.unregister('F5');
+    globalShortcut.unregister('F1');
+    globalShortcut.unregister('Escape');
+    globalShortcut.unregister('Control+F5');
+    globalShortcut.unregister('Control+Left');
+    globalShortcut.unregister('Control+Right');
+  };
+
   globalShortcut.register('Control+R', () => {
     if (isMainWindowFocused()) {
       mainWindow.reload();
@@ -158,7 +174,12 @@ globalShortcut.register('Control+Right', () => {
   }
 }
 });
-
+app.on('browser-window-blur', () => {
+  unregisterShortcutsOnBlur();
+});
+app.on('browser-window-focus', () => {
+  registerShortcuts(mainWindow);
+});
   app.on('will-quit', () => {
     globalShortcut.unregisterAll();
   });
