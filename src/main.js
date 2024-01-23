@@ -9,19 +9,11 @@
 const { app, BrowserWindow, session } = require('electron');
 const path = require('path');
 const { 
-debuggerOption,
+debuggerOn,
 proxyEnable,
 SecureDnsEnable,
 AdBlockEnable
  } = require('../config');
-   // This is about to get messy.
-   if (debuggerOption) {
-    const enableDebugger = require('./debugger');
-    console.log('Debugger is enabled.')
-    enableDebugger(mainWindow, debuggerOption);
-  } else {
-    console.log('Debugger is disabled.')
-  }
 const registerShortcuts = require('./shortcut');
 
 
@@ -63,7 +55,18 @@ app.whenReady().then(() => {
       deviceScaleFactor: 0.8,
     },
   });
- 
+
+  
+   // This is about to get messy.
+   if (debuggerOn) {
+    const debuggerOption = true;
+    const enableDebugger = require('./debugger');
+    console.log('Debugger is enabled.')
+    enableDebugger(mainWindow, debuggerOption);
+  } else {
+    console.log('Debugger is disabled.')
+  }
+
 /*
 // Load unpacked chrome extensions, mostly fails.
 // Usage : Just put the directory in /src and change the YOUR_DIRECTORY_NAME.
