@@ -36,7 +36,7 @@ app.whenReady().then(() => {
       contextIsolation: true,
       sandbox: true,
       disableRemoteModule: true,
-      experimentalFeatures: true,
+      experimentalFeatures: false,
       nativeWindowOpen: true,
       offscreen: false,
       allowRunningInsecureContent: false,
