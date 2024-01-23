@@ -13,7 +13,15 @@ debuggerOption,
 proxyEnable,
 SecureDnsEnable,
 AdBlockEnable
- } = require('config');
+ } = require('../config');
+   // This is about to get messy.
+   if (debuggerOption) {
+    const enableDebugger = require('./debugger');
+    console.log('Debugger is enabled.')
+    enableDebugger(mainWindow, debuggerOption);
+  } else {
+    console.log('Debugger is disabled.')
+  }
 const registerShortcuts = require('./shortcut');
 
 
@@ -149,15 +157,6 @@ mainWindow.maximize();
     // Disable webview to enhance security
     event.preventDefault();
   });
-
-  // This is about to get messy.
-  if (debuggerOption) {
-  const enableDebugger = require('./debugger');
-  console.log('Debugger is enabled.')
-  enableDebugger(mainWindow, debuggerOption);
-} else {
-  console.log('Debugger is disabled.')
-}
   // Register shortcuts from shortcut.js
   registerShortcuts(mainWindow);
 });
