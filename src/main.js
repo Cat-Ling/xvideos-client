@@ -34,18 +34,16 @@ app.whenReady().then(() => {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: true,
-      sandbox: false,
+      sandbox: true,
       disableRemoteModule: true,
       experimentalFeatures: true,
       nativeWindowOpen: true,
       offscreen: false,
-      webRTC: false,
-      disableBlinkFeatures: 'WebRTC',
       allowRunningInsecureContent: false,
       // This injects xvideos+ userscript from https://sleazyfork.org/en/scripts/459863-xvideos
       // Check the site to see what it does.
       // Although not expected, it mostly works, except for the button to download videos without login.
-      preload: path.join(__dirname, 'preload.js'),
+      // preload: path.join(__dirname, 'preload.js'),
       deviceScaleFactor: 0.8,
     },
   });
