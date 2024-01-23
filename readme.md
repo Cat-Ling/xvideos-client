@@ -43,7 +43,7 @@ npm run linux-build
 ```
 - Windows and Linux at the same time.
  ```sh
-npm run windows-build
+npm run make
 ```
 I'm unable to provide Mac instructions as I don't have one to test it on.
 
