@@ -32,7 +32,7 @@ app.whenReady().then(() => {
     frame: true,
     icon: 'public/x.png',
     webPreferences: {
-      nodeIntegration: true,
+      nodeIntegration: false,
       contextIsolation: true,
       sandbox: true,
       disableRemoteModule: true,
