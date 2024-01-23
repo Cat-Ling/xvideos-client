@@ -6,6 +6,7 @@ module.exports = {
     // "^\\/public$",
     //  "^\\/src$",
     //  "^\\/node_modules$",
+      "^\\/xdata",
       "^\\/[.].+",
       // [...]
   ]
