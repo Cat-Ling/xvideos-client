@@ -2,7 +2,7 @@ module.exports = {
     // Config for all the functions somebody might want to tinker with.
 
 // Enable it if you want your console to go woooooosh!!!.
-debuggerOption: false,
+debuggerOn: false,
 
 // Proxy Config / set `false` to disable proxies
 proxyEnable: true,
