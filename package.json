@@ -7,7 +7,7 @@
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "build": "electron-forge make",
+    "make": "electron-forge make",
     "build": "npm run linux-build && npm run windows-build",
     "linux-build": "electron-forge package --platform=linux --arch=x64",
     "windows-build": "electron-forge package --platform=win32 --arch=x64"
