@@ -12,7 +12,8 @@ I'm currently developing an alternative version of this project. Should it see t
 - SOCKS5 - A list of proxies is feteched from [monosans/proxy-list](https://raw.githubusercontent.com/monosans/proxy-list/main/proxies_anonymous/socks5.txt) and a random proxy is chosen every time. 
 - The client contains some __hidden XVideos proxy domains__ that are only accessible through this client.
   You can cycle through proxies by pressing __CTRL+SPACE__ if the page fails to load.
-
+  
+- A powerful AdBlocker, thanks to [ghostery/adblocker](https://github.com/ghostery/adblocker).
 - A **search feature** which can be accessed by pressing __CTRL+S__.
   Warning : ElectronJS is prone to WebRTC IP leaks, meaning you will end up leaking your real IP address if you visit certain websites.
 
