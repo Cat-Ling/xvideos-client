@@ -51,7 +51,7 @@ jobs:
           Expand-Archive -Path out/make/zip/win32/arm64/*.zip -DestinationPath out/make/zip/win32/arm64/
           Remove-Item -Path out/make/zip/win32/arm64/*.zip
       - name: Upload Artifacts for Windows (ARM64)
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: windows_arm64
           compression-level: 9
@@ -77,7 +77,7 @@ jobs:
           unzip -o out/make/zip/linux/x64/*.zip -d out/make/zip/linux/x64/
           rm -f out/make/zip/linux/x64/*.zip
       - name: Upload Artifacts for Linux
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: linux_x64
           compression-level: 9
@@ -103,7 +103,7 @@ jobs:
           unzip -o out/make/zip/linux/arm64/*.zip -d out/make/zip/linux/arm64/
           rm -f out/make/zip/linux/arm64/*.zip
       - name: Upload Artifacts for Linux (ARM64)
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: linux_arm64
           compression-level: 9
@@ -129,7 +129,7 @@ jobs:
           unzip -o out/make/zip/darwin/x64/*.zip -d out/make/zip/darwin/x64/
           rm -f out/make/zip/darwin/x64/*.zip
       - name: Upload Artifacts for macOS
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: macos_x64
           compression-level: 9
@@ -155,7 +155,7 @@ jobs:
           unzip -o out/make/zip/darwin/arm64/*.zip -d out/make/zip/darwin/arm64/
           rm -f out/make/zip/darwin/arm64/*.zip
       - name: Upload Artifacts for macOS (ARM64)
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: macos_arm64
           compression-level: 9
