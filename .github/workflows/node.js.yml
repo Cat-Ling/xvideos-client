@@ -54,6 +54,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: windows_arm64
+          compression-level: 9
           path: out/make/zip/win32/arm64/*
 
   linux-x64:
@@ -79,6 +80,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: linux_x64
+          compression-level: 9
           path: out/make/zip/linux/x64/*
 
   linux-arm64:
@@ -104,6 +106,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: linux_arm64
+          compression-level: 9
           path: out/make/zip/linux/arm64/*
 
   macos-x64:
@@ -129,6 +132,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: macos_x64
+          compression-level: 9
           path: out/make/zip/darwin/x64/*
 
   macos-arm64:
@@ -154,4 +158,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: macos_arm64
+          compression-level: 9
           path: out/make/zip/darwin/arm64/*
