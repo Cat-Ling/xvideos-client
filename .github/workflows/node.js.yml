@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        node-version: [20.x, 21.6.1]
+        node-version: [20.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -27,13 +27,13 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts-windows
-          path: out/make/zip/
+          path: out/make/zip/win32/*/*.zip
 
   build-linux:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x, 21.6.1]
+        node-version: [20.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -49,13 +49,13 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts-linux
-          path: out/make/zip
+          path: out/make/zip/linux/*/*.zip
 
   build-macos:
     runs-on: macos-latest
     strategy:
       matrix:
-        node-version: [20.x, 21.6.1]
+        node-version: [20.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -71,4 +71,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts-macos
-          path: out/make/zip
+          path: out/make/zip/darwin/*/*.zip
