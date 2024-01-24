@@ -22,12 +22,15 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run make
-
+      - name: Unzip and Delete Inner Zip Files
+        run: |
+          Expand-Archive -Path out/make/zip/win32/x64/*.zip -DestinationPath out/make/zip/win32/x64/
+          Remove-Item -Path out/make/zip/win32/x64/*.zip
       - name: Upload Artifacts for Windows
         uses: actions/upload-artifact@v3
         with:
           name: windows_x64
-          path: out/make/zip/win32/x64/*.zip
+          path: out/make/zip/win32/x64/*
 
   windows-arm64:
     runs-on: windows-latest
