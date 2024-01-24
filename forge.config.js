@@ -3,28 +3,26 @@ module.exports = {
     asar: true,
     icon: 'public/x',
     ignore: [
-    // "^\\/public$",
-    //  "^\\/src$",
-    //  "^\\/node_modules$",
-      "^\\/xdata",
-      "^\\/[.].+",
-      // [...]
-  ]
+      'out/',
+      'xdata/'
+    ],
   },
   rebuildConfig: {},
   makers: [
-    {
+/*    {
+      
       name: '@electron-forge/maker-squirrel',
       config: {
 //        iconUrl: 'public/x.ico',
         setupIcon: 'public/x.ico'
-      }
+      } 
     },
+*/   
     {
       name: '@electron-forge/maker-zip',
-      platforms: ['darwin', 'linux', 'windows'],
+      platforms: ['all']
     },
-    {
+/*    {
       name: '@electron-forge/maker-deb',
       config: {
         icon: 'public/x.png'
@@ -33,9 +31,10 @@ module.exports = {
     {
       name: '@electron-forge/maker-rpm',
       config: {
-        icon: 'public/x.icns'
+        icon: 'public/x.png'
       },
     },
+*/    
   ],
 /*  plugins: [
     {
