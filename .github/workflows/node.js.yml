@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-windows:
+  windows-x64:
     runs-on: windows-latest
     strategy:
       matrix:
@@ -26,10 +26,32 @@ jobs:
       - name: Upload Artifacts for Windows
         uses: actions/upload-artifact@v3
         with:
-          name: build-artifacts-windows
-          path: out/make/zip/win32/*/*.zip
+          name: windows_x64
+          path: out/make/zip/win32/x64/*.zip
 
-  build-linux:
+  windows-arm64:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }} (ARM64)
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run make -- --arch=arm64 --platform=win32
+
+      - name: Upload Artifacts for Windows (ARM64)
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows_arm64
+          path: out/make/zip/win32/arm64/*.zip
+
+  linux-x64:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -48,10 +70,32 @@ jobs:
       - name: Upload Artifacts for Linux
         uses: actions/upload-artifact@v3
         with:
-          name: build-artifacts-linux
-          path: out/make/zip/linux/*/*.zip
+          name: linux_x64
+          path: out/make/zip/linux/x64/*.zip
 
-  build-macos:
+  linux-arm64:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }} (ARM64)
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run make -- --arch=arm64 --platform=linux
+
+      - name: Upload Artifacts for Linux (ARM64)
+        uses: actions/upload-artifact@v3
+        with:
+          name: linux_arm64
+          path: out/make/zip/linux/arm64/*.zip
+
+  macos-x64:
     runs-on: macos-latest
     strategy:
       matrix:
@@ -65,10 +109,32 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-      - run: npm run make
+      - run: npm run makemac
 
       - name: Upload Artifacts for macOS
         uses: actions/upload-artifact@v3
         with:
-          name: build-artifacts-macos
-          path: out/make/zip/darwin/*/*.zip
+          name: macos_x64
+          path: out/make/zip/darwin/x64/*.zip
+
+  macos-arm64:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }} (ARM64)
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run make -- --arch=arm64 --platform=darwin
+
+      - name: Upload Artifacts for macOS (ARM64)
+        uses: actions/upload-artifact@v3
+        with:
+          name: macos_arm64
+          path: out/make/zip/darwin/arm64/*.zip
