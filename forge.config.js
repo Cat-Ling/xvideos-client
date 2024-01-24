@@ -20,7 +20,7 @@ module.exports = {
 */   
     {
       name: '@electron-forge/maker-zip',
-      platforms: ['all']
+      platforms: ['linux','windows','darwin']
     },
 /*    {
       name: '@electron-forge/maker-deb',
