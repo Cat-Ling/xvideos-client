@@ -1,10 +1,8 @@
-name: Node.js CI
-
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   windows-x64:
@@ -22,7 +20,7 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run make
-      - name: Unzip and Delete Inner Zip Files
+      - name: Recompress zip
         run: |
           Expand-Archive -Path out/make/zip/win32/x64/*.zip -DestinationPath out/make/zip/win32/x64/
           Remove-Item -Path out/make/zip/win32/x64/*.zip
@@ -48,12 +46,15 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run make -- --arch=arm64 --platform=win32
-
+      - name: Recompress zip
+        run: |
+          Expand-Archive -Path out/make/zip/win32/arm64/*.zip -DestinationPath out/make/zip/win32/arm64/
+          Remove-Item -Path out/make/zip/win32/arm64/*.zip
       - name: Upload Artifacts for Windows (ARM64)
         uses: actions/upload-artifact@v3
         with:
           name: windows_arm64
-          path: out/make/zip/win32/arm64/*.zip
+          path: out/make/zip/win32/arm64/*
 
   linux-x64:
     runs-on: ubuntu-latest
@@ -70,12 +71,15 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run make
-
+      - name: Recompress zip
+        run: |
+          unzip -o out/make/zip/linux/x64/*.zip -d out/make/zip/linux/x64/
+          rm -f out/make/zip/linux/x64/*.zip
       - name: Upload Artifacts for Linux
         uses: actions/upload-artifact@v3
         with:
           name: linux_x64
-          path: out/make/zip/linux/x64/*.zip
+          path: out/make/zip/linux/x64/*
 
   linux-arm64:
     runs-on: ubuntu-latest
@@ -92,12 +96,15 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run make -- --arch=arm64 --platform=linux
-
+      - name: Recompress zip
+        run: |
+          unzip -o out/make/zip/linux/arm64/*.zip -d out/make/zip/linux/arm64/
+          rm -f out/make/zip/linux/arm64/*.zip
       - name: Upload Artifacts for Linux (ARM64)
         uses: actions/upload-artifact@v3
         with:
           name: linux_arm64
-          path: out/make/zip/linux/arm64/*.zip
+          path: out/make/zip/linux/arm64/*
 
   macos-x64:
     runs-on: macos-latest
@@ -114,12 +121,15 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run make
-
+      - name: Recompress zip
+        run: |
+          unzip -o out/make/zip/darwin/x64/*.zip -d out/make/zip/darwin/x64/
+          rm -f out/make/zip/darwin/x64/*.zip
       - name: Upload Artifacts for macOS
         uses: actions/upload-artifact@v3
         with:
           name: macos_x64
-          path: out/make/zip/darwin/x64/*.zip
+          path: out/make/zip/darwin/x64/*
 
   macos-arm64:
     runs-on: macos-latest
@@ -136,9 +146,12 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run make -- --arch=arm64 --platform=darwin
-
+      - name: Recompress zip
+        run: |
+          unzip -o out/make/zip/darwin/arm64/*.zip -d out/make/zip/darwin/arm64/
+          rm -f out/make/zip/darwin/arm64/*.zip
       - name: Upload Artifacts for macOS (ARM64)
         uses: actions/upload-artifact@v3
         with:
           name: macos_arm64
-          path: out/make/zip/darwin/arm64/*.zip
+          path: out/make/zip/darwin/arm64/*
