@@ -24,7 +24,7 @@ jobs:
       - run: npm run make
 
       - name: Upload Artifacts for Windows
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: build-artifacts-windows
           path: out/make
@@ -46,7 +46,7 @@ jobs:
       - run: npm run make
 
       - name: Upload Artifacts for Linux
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: build-artifacts-linux
           path: out/make
@@ -68,7 +68,7 @@ jobs:
       - run: npm run make
 
       - name: Upload Artifacts for macOS
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: build-artifacts-macos
           path: out/make
