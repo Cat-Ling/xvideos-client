@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: build-artifacts-windows
-          path: xvideos-client/out/make/zip/
+          path: xvideos-client/out/make/zip/win32/x64/
 
   build-linux:
     runs-on: ubuntu-latest
