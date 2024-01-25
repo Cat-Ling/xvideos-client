@@ -41,7 +41,7 @@ npm run windows-build
  ```sh
 npm run linux-build
 ```
-- Windows and Linux at the same time.
+- Create a zipped build for your current OS.
  ```sh
 npm run make
 ```
