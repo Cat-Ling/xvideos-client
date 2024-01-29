@@ -50,7 +50,7 @@ I'm unable to provide Mac instructions as I don't have one to test it on.
 
 ## Keyboard Shortcuts
 
-These are some keyboard shortcuts to increase our quality of life :
+These are some keyboard shortcuts for ease of use :
 
 |                |Shortcut Key                          |Note                         |
 |----------------|-------------------------------|-----------------------------|
