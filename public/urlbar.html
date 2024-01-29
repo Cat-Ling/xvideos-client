@@ -1,51 +1,114 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>New Tab</title>
+    <title>Search</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5;
             margin: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
+            position: relative;
         }
+    
+        html,
+        body {
+            height: 100%;
+        }
+        
         #urlContainer {
-            background-color: #fff;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
             display: flex;
+            flex-direction: column;
             align-items: center;
         }
+
         #urlInput {
-            flex: 1;
             border: 1px solid #d1d1d1;
             padding: 8px;
-            border-radius: 3px;
-            margin-right: 8px;
-            font-size: 14px;
+            border-radius: 50px;
+            margin-bottom: 16px;
+            font-size: 100%;
+            align-items: center;
+            width: 100%;
+            height: 45px;
+            box-sizing: border-box;
         }
+    
         #submitBtn {
             background-color: #007bff;
             color: #fff;
             border: none;
             padding: 8px 12px;
-            border-radius: 3px;
+            border-radius: 7px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 140%;
+        }
+    
+        footer {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 99%;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 50px;
+            padding: 0px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        .powered-by {
+            margin-top: 0px;
+            color: #333;
+        }
+    
+        footer a {
+            color: #333;
+            text-decoration: none;
+        }
+    
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #333;
+                color: #fff;
+            }
+    
+            #urlInput {
+                border-color: #666;
+                background-color: #555;
+                color: #fff;
+            }
+    
+            .powered-by {
+                color: #fff;
+            }
+    
+            footer a {
+                color: #fff;
+            }
+    
+            footer {
+                background-color: #444;
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            }
+    
+            #submitBtn {
+                background-color: #007bff;
+                color: #fff;
+            }
         }
     </style>
+    
 </head>
 <body>
     <div id="urlContainer">
         <input autofocus id="urlInput" placeholder="Enter URL or search term">
-        <button id="submitBtn" onclick="submitUrl()">Go</button>
+        <button id="submitBtn" onclick="submitUrl()">Search</button>
     </div>
 <script>
   /*
@@ -85,25 +148,82 @@ document.getElementById('urlContainer').addEventListener('keyup', function (even
 function submitDuckDuckGoSearch(query) {
     const form = document.createElement('form');
     form.action = 'https://duckduckgo.com/';
-    form.method = 'POST'; // Changed method to POST
+    form.method = 'POST'; // Changed method to POST to pervent search tracking by URL. Note that this won't magically make you anonymous.
 
-    const inputQuery = document.createElement('input');
-    inputQuery.type = 'hidden';
-    inputQuery.name = 'q';
-    inputQuery.value = query;
+    const Query = document.createElement('input');
+    Query.type = 'hidden';
+    Query.name = 'q';
+    Query.value = query;
 
-    const inputSafeSearch = document.createElement('input');
-    inputSafeSearch.type = 'hidden';
-    inputSafeSearch.name = 'kp';
-    inputSafeSearch.value = '-2'; // Disable SafeSearch. You can set it to -1 to enable moderate filter.
+    const SafeSearch = document.createElement('input');
+    SafeSearch.type = 'hidden';
+    SafeSearch.name = 'kp';
+    SafeSearch.value = '-2'; // I've disabled SafeSearch by using -2. You can set it to -1 to enable moderate filter.
 
-    form.appendChild(inputQuery);
-    form.appendChild(inputSafeSearch);
+    const method = document.createElement('input');
+    method.type = 'hidden';
+    method.name = 'kg';
+    method.value = 'p'; // Tells DuckDuckGo to use POST instead of GET.
+
+    const theme = document.createElement('input');
+    theme.type = 'hidden';
+    theme.name = 'kae';
+    theme.value = 'd'; // This is the color code of search results. Default is d=Dark
+
+    const header = document.createElement('input');
+    header.type = 'hidden';
+    header.name = 'ko';
+    header.value = '1'; // Floating header while you scroll.
+
+    const advertisements = document.createElement('input');
+    advertisements.type = 'hidden';
+    advertisements.name = 'k1';
+    advertisements.value = '-1'; // Disabled advertisements.
+
+    const videoPrefs = document.createElement('input');
+    videoPrefs.type = 'hidden';
+    videoPrefs.name = 'k5';
+    videoPrefs.value = '-1'; // This will prompt you whether you want to play the video directly on DuckDuckGo or go to that video's page.
+
+    const https = document.createElement('input');
+    https.type = 'hidden';
+    https.name = 'kh';
+    https.value = '1'; // Tells DuckDuckGo that you prefer https. We're already doing that in our modern browsers, but this value makes sure of it, so why not. Besides, the client I originally made this page for won't load http at all.
+
+    const hideRef = document.createElement('input');
+    hideRef.type = 'hidden';
+    hideRef.name = 'kd';
+    hideRef.value = '1'; // It's probably not needed but anything that increases privacy is good right? It hides where you came from, in simple terms, sites won't know the search page you came from (which would reveal your search term) but we don't have to worry anyway because we're using POST to do searches.
+
+    const autoLR = document.createElement('input');
+    autoLR.type = 'hidden';
+    autoLR.name = 'kav';
+    autoLR.value = '1'; // Auto loads results as you scroll.
+
+    const region = document.createElement('input');
+    region.type = 'hidden';
+    region.name = 'kl';
+    region.value = 'us-en'; // Change the value to change default search region. Default is United States, English.
+
+    form.appendChild(Query); // Search query. (The thing you type to search :p)
+    form.appendChild(SafeSearch); // If you're thinking of using this for your app, remove this to set safesearch to default.
+    form.appendChild(theme); // Remove this to set theme to default.
+    form.appendChild(header); // Remove this if you want the header to not be persistently floating.
+    form.appendChild(advertisements); // Remove this if you want advertisements on DuckDuckGo.
+    form.appendChild(method); // Remove if you want your search queries to be tracked by your browser.
+    form.appendChild(videoPrefs); // Always shows video Preferences.
+    form.appendChild(https); // Tells DuckDuckGo to only use https.
+    form.appendChild(hideRef); // Hide referrers.
+    form.appendChild(autoLR); // Auto load results as you scroll.
+    form.appendChild(region); // Defines your search region.
+
     document.body.appendChild(form);
 
     form.submit();
 }
-
 </script>
 </body>
+<footer>
+    <div class="powered-by">Search powered by <a href="https://duckduckgo.com">DuckDuckGo.</a></div>
+</footer>
 </html>
