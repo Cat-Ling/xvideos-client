@@ -85,14 +85,20 @@ document.getElementById('urlContainer').addEventListener('keyup', function (even
 function submitDuckDuckGoSearch(query) {
     const form = document.createElement('form');
     form.action = 'https://duckduckgo.com/';
-    form.method = 'GET';
+    form.method = 'POST'; // Changed method to POST
 
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'q';
-    input.value = query;
+    const inputQuery = document.createElement('input');
+    inputQuery.type = 'hidden';
+    inputQuery.name = 'q';
+    inputQuery.value = query;
 
-    form.appendChild(input);
+    const inputSafeSearch = document.createElement('input');
+    inputSafeSearch.type = 'hidden';
+    inputSafeSearch.name = 'kp';
+    inputSafeSearch.value = '-2'; // Disable SafeSearch. You can set it to -1 to enable moderate filter.
+
+    form.appendChild(inputQuery);
+    form.appendChild(inputSafeSearch);
     document.body.appendChild(form);
 
     form.submit();
