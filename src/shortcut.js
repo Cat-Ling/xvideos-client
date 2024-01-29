@@ -32,7 +32,8 @@ function createurlbarWindow(mainWindow) {
 
 function registerShortcuts(mainWindow) {
   const isMainWindowFocused = () => mainWindow && mainWindow.isFocused();
-  const isurlbarWindowFocused = () => urlbarWindow && urlbarWindow.isFocused();
+  const isUrlbarWindowFocused = () => urlbarWindow && urlbarWindow.isFocused();
+  const isUrlbarWindowOpen = () => !!urlbarWindow;
 
   // Function to unregister shortcuts when the application loses focus
   const unregisterShortcutsOnBlur = () => {
@@ -103,8 +104,10 @@ function registerShortcuts(mainWindow) {
 
   globalShortcut.register('Control+S', () => {
     if (isMainWindowFocused()) {
-      createurlbarWindow(mainWindow);
-    } else if (isurlbarWindowFocused()) {
+      if (!isUrlbarWindowOpen()) {
+        createurlbarWindow(mainWindow);
+      }
+    } else if (isUrlbarWindowFocused()) {
       urlbarWindow.webContents.loadFile('public/urlbar.html');
     }
   });
