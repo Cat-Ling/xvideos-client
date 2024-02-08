@@ -8,6 +8,7 @@
 */
 const { app, globalShortcut, BrowserWindow } = require('electron');
 const { GetProxy, ConnectProxy } = require('./proxy');
+const { setWebRTCBlockingPolicy } = require('./webrtc');
 let urlbarWindow;
 let shortcutsRegistered = false;
 
@@ -27,7 +28,7 @@ function createurlbarWindow(mainWindow) {
   urlbarWindow.on('closed', () => {
     urlbarWindow = null;
   });
-
+  setWebRTCBlockingPolicy(urlbarWindow.webContents); //not needed, but added as a failsafe
   urlbarWindow.loadFile('public/urlbar.html');
 }
 
@@ -178,6 +179,10 @@ function registerShortcuts(mainWindow) {
     shortcutsRegistered = true;
   }
 }
+
+app.on('browser-window-created', (event, window) => {
+  setWebRTCBlockingPolicy(window.webContents);
+});
 
 app.on('browser-window-blur', () => {
   unregisterShortcuts();
