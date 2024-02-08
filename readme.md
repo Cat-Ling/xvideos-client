@@ -3,6 +3,22 @@
 
 As of February 8, 2024, the WebRTC leak issue has been resolved. This means I can now proceed with developing a Tor version of the app. However, there are no guarantees as to when or if it will be released.
 
+### I'm finding alternatives for Electron.
+#### Why?
+- Because its not good at being beginner friendly.
+- The documentation is all over the place except for the super basic stuff. Take the webRTC issue for example, I had to go through their issues page, search for commits and then finally read the source code to find a way to disable it.
+- Basic things you'd expect to be easily configurable oob, they find a way to make them complex.
+- Take their permissions api for example, they allow all permissions by default. There is no way to only allow certain permissions, instead you have to do the opposite, you have to manually account for each one you want to disable.
+Their reasons (excuses) -
+```
+By default, Electron will automatically approve all permission requests unless the developer has manually configured a custom handler. While a solid default, security-conscious developers might want to assume the very opposite.
+```
+"A solid default", sure.
+- At the end, the excuse I'll get is that my use case is the issue, not their reluctance to add any new code. Why innovate if it already works? Right?
+- Yeah, I get it, I'm just starting out, but seriously, as a newbie, I can tell you this is hands down the worst learning experience I've ever had.
+
+I'll probably have a better experience (more secure too) with Chromium using commandline parameters.
+
 This is a wrapper for XVIDEOS, it can bypass regional restrictions by using XVIDEOS' private domains to connect to the servers and sending all the traffic through a socks5 proxy.
 
 ### Notice : There are always some risks associated with unknown proxies. Please do not log into your account. Or only use an account you can afford to lose in the worst case scenario.
