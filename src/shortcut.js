@@ -54,7 +54,7 @@ function registerShortcuts(mainWindow) {
   globalShortcut.register('Control+R', () => {
     if (isMainWindowFocused()) {
       mainWindow.reload();
-    } else if (isurlbarWindowFocused()) {
+    } else if (isUrlbarWindowFocused()) {
       urlbarWindow.reload();
     }
   });
@@ -62,7 +62,7 @@ function registerShortcuts(mainWindow) {
   globalShortcut.register('Control+Shift+R', () => {
     if (isMainWindowFocused()) {
       mainWindow.webContents.reloadIgnoringCache();
-    } else if (isurlbarWindowFocused()) {
+    } else if (isUrlbarWindowFocused()) {
       urlbarWindow.webContents.reloadIgnoringCache();
     }
   });
@@ -86,7 +86,7 @@ function registerShortcuts(mainWindow) {
         mainWindow.webContents.reload();
       }, 2000);
   
-    } else if (isurlbarWindowFocused()) {
+    } else if (isUrlbarWindowFocused()) {
       GetProxy();
   
       await executeWithDelay(() => {
@@ -115,7 +115,7 @@ function registerShortcuts(mainWindow) {
   globalShortcut.register('Control+W', () => {
     if (isMainWindowFocused()) {
       mainWindow.close();
-    } else if (isurlbarWindowFocused()) {
+    } else if (isUrlbarWindowFocused()) {
       urlbarWindow.close();
     }
   });
@@ -127,7 +127,7 @@ function registerShortcuts(mainWindow) {
   globalShortcut.register('F5', () => {
     if (isMainWindowFocused()) {
       mainWindow.webContents.reload();
-    } else if (isurlbarWindowFocused()) {
+    } else if (isUrlbarWindowFocused()) {
       urlbarWindow.webContents.reload();
     }
   });
@@ -135,7 +135,7 @@ function registerShortcuts(mainWindow) {
   globalShortcut.register('F1', () => {
     if (isMainWindowFocused()) {
       mainWindow.loadURL('https://github.com/Cat-Ling/xvideos-client?tab=readme-ov-file#keyboard-shortcuts');
-    } else if (isurlbarWindowFocused()) {
+    } else if (isUrlbarWindowFocused()) {
       urlbarWindow.loadURL('https://github.com/Cat-Ling/xvideos-client?tab=readme-ov-file#keyboard-shortcuts');
     }
   });
@@ -148,41 +148,42 @@ function registerShortcuts(mainWindow) {
   globalShortcut.register('Control+F5', () => {
     if (isMainWindowFocused()) {
       mainWindow.webContents.reloadIgnoringCache();
-    } else if (isurlbarWindowFocused()) {
+    } else if (isUrlbarWindowFocused()) {
       urlbarWindow.webContents.reloadIgnoringCache();
     }
   });
 
 
-globalShortcut.register('Control+Left', () => {
-  if (isMainWindowFocused()) {
-    if (mainWindow.webContents.canGoBack()) {
-      mainWindow.webContents.goBack();
+  globalShortcut.register('Control+Left', () => {
+    if (isMainWindowFocused()) {
+      if (mainWindow.webContents.canGoBack()) {
+        mainWindow.webContents.goBack();
+      }
+    } else if (isUrlbarWindowFocused()) {
+      if (urlbarWindow.webContents.canGoBack()) {
+        urlbarWindow.webContents.goBack();
+      }
     }
-  } else if (isurlbarWindowFocused()) {
-    if (urlbarWindow.webContents.canGoBack()) {
-      urlbarWindow.webContents.goBack();
-  }
-}
-});
+  });
 
-globalShortcut.register('Control+Right', () => {
-  if (isMainWindowFocused()) {
-    if (mainWindow.webContents.canGoForward()) {
-      mainWindow.webContents.goForward();
+  globalShortcut.register('Control+Right', () => {
+    if (isMainWindowFocused()) {
+      if (mainWindow.webContents.canGoForward()) {
+        mainWindow.webContents.goForward();
+      }
+    } else if (isUrlbarWindowFocused()) {
+      if (urlbarWindow.webContents.canGoForward()) {
+        urlbarWindow.webContents.goForward();
+      }
     }
-  } else if (isurlbarWindowFocused()) {
-    if (urlbarWindow.webContents.canGoForward()) {
-      urlbarWindow.webContents.goForward();
-  }
-}
-});
-app.on('browser-window-blur', () => {
-  unregisterShortcutsOnBlur();
-});
-app.on('browser-window-focus', () => {
-  registerShortcuts(mainWindow);
-});
+  });
+
+  app.on('browser-window-blur', () => {
+    unregisterShortcutsOnBlur();
+  });
+  app.on('browser-window-focus', () => {
+    registerShortcuts(mainWindow);
+  });
   app.on('will-quit', () => {
     globalShortcut.unregisterAll();
   });
