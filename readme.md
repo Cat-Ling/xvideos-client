@@ -18,7 +18,7 @@ I'm currently developing an alternative version of this project. Should it see t
   
 - A powerful AdBlocker, thanks to [ghostery/adblocker](https://github.com/ghostery/adblocker).
 - A **search feature** which can be accessed by pressing __CTRL+S__.
-  Warning : ElectronJS is prone to WebRTC IP leaks, meaning you will end up leaking your real IP address if you visit certain websites.
+  ~~Warning : ElectronJS is prone to WebRTC IP leaks, meaning you will end up leaking your real IP address if you visit certain websites.~~ (fixed)
 
 
 ## Getting Started -
