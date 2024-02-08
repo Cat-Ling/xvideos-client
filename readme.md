@@ -1,6 +1,7 @@
 # XVideos Client - socks5
 [![powered by Ghostery](https://img.shields.io/badge/ghostery-powered-blue?logo=ghostery)](https://github.com/ghostery/adblocker)
 
+As of February 8, 2024, the WebRTC leak issue has been resolved. This means I can now proceed with developing a Tor version of the app. However, there are no guarantees as to when or if it will be released.
 
 This is a wrapper for XVIDEOS, it can bypass regional restrictions by using XVIDEOS' private domains to connect to the servers and sending all the traffic through a socks5 proxy.
 
