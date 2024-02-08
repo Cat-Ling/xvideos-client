@@ -7,6 +7,7 @@
 * Beware - This script was made by Cat-Ling, so there's always a chance of you just falling dead when you run this script.
 */
 const { app, BrowserWindow, session } = require('electron');
+const { setWebRTCBlockingPolicy } = require('./webrtc');
 const path = require('path');
 const { 
 debuggerOn,
@@ -36,6 +37,9 @@ async function initAdblocker() {
 
 
 app.whenReady().then(() => {
+  app.on('browser-window-created', (event, window) => {
+    setWebRTCBlockingPolicy(window.webContents);
+});
   const mainWindow = new BrowserWindow({
     frame: true,
     icon: 'public/x.png',
@@ -124,11 +128,12 @@ session.defaultSession.loadExtension(extensionPath).then(({ id }) => {
     callback({ cancel: false, requestHeaders: details.requestHeaders });
   });
 
- 
+ setWebRTCBlockingPolicy(mainWindow.webContents); //not needed, but added as a failsafe
 
   // Load our index.html - the page we see right now on launch
 mainWindow.loadFile('public/index.html');
 //  mainWindow.loadURL('https://www.xvideos.com'); // Load a url, CTRL+S already lets you do that tho.
+
 
 mainWindow.maximize();
 
