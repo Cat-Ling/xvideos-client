@@ -109,32 +109,6 @@ jobs:
           compression-level: 9
           path: out/make/zip/linux/arm64/*
 
-  macos-x64:
-    runs-on: macos-latest
-    strategy:
-      matrix:
-        node-version: [20.x]
-
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run make
-      - name: Recompress zip
-        run: |
-          unzip -o out/make/zip/darwin/x64/*.zip -d out/make/zip/darwin/x64/
-          rm -f out/make/zip/darwin/x64/*.zip
-      - name: Upload Artifacts for macOS
-        uses: actions/upload-artifact@v4
-        with:
-          name: macos_x64
-          compression-level: 9
-          path: out/make/zip/darwin/x64/*
-
   macos-arm64:
     runs-on: macos-latest
     strategy:
