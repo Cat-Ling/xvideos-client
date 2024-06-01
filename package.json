@@ -27,7 +27,7 @@
     "@cliqz/adblocker-electron": "^1.27.2",
     "axios": "^1.6.8",
     "cross-fetch": "^4.0.0",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.1"
   },
   "homepage": "https://github.com/Cat-Ling"
 }
