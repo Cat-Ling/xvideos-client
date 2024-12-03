@@ -6,7 +6,7 @@
 * Warning - This script is heavily based on the references I took from ChatGPT.
 * Beware - This script was made by Cat-Ling, so there's always a chance of you just falling dead when you run this script.
 */
-const { ElectronBlocker } = require('@cliqz/adblocker-electron');
+const { ElectronBlocker } = require('@ghostery/adblocker-electron');
 const { session } = require('electron');
 const fetch = require('cross-fetch');
 const fs = require('fs').promises;
