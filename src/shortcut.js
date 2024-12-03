@@ -139,24 +139,24 @@ function registerAllShortcuts(mainWindow) {
 
   globalShortcut.register('Control+Left', () => {
     if (isMainWindowFocused()) {
-      if (mainWindow.webContents.canGoBack()) {
-        mainWindow.webContents.goBack();
+      if (mainWindow.webContents.navigationHistory.goBack()) {
+        mainWindow.webContents.navigationHistory.goBack();
       }
     } else if (isUrlbarWindowFocused()) {
-      if (urlbarWindow.webContents.canGoBack()) {
-        urlbarWindow.webContents.goBack();
+      if (urlbarWindow.webContents.navigationHistory.goBack()) {
+        urlbarWindow.webContents.navigationHistory.goBack();
       }
     }
   });
 
   globalShortcut.register('Control+Right', () => {
     if (isMainWindowFocused()) {
-      if (mainWindow.webContents.canGoForward()) {
-        mainWindow.webContents.goForward();
+      if (mainWindow.webContents.navigationHistory.goForward()) {
+        mainWindow.webContents.navigationHistory.goForward();
       }
     } else if (isUrlbarWindowFocused()) {
-      if (urlbarWindow.webContents.canGoForward()) {
-        urlbarWindow.webContents.goForward();
+      if (urlbarWindow.webContents.navigationHistory.goForward()) {
+        urlbarWindow.webContents.navigationHistory.goForward();
       }
     }
   });
