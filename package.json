@@ -1,6 +1,6 @@
 {
   "name": "XVideos",
-  "version": "1.11.55",
+  "version": "1.11.56",
   "description": "A client for xvideos.",
   "main": "src/main.js",
   "icon": "public/favicon.ico",
