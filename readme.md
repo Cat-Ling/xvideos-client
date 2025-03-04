@@ -1,7 +1,7 @@
 # XVideos Client - socks5
 [![powered by Ghostery](https://img.shields.io/badge/ghostery-powered-blue?logo=ghostery)](https://github.com/ghostery/adblocker)
 
-This is a wrapper for XVIDEOS, it can bypass regional restrictions by using XVIDEOS' private domains to connect to the servers and sending all the traffic through a socks5 proxy.
+This is a wrapper for XVIDEOS, it can bypass regional restrictions by sending all its traffic through a randomly chosen socks5 proxy.
 
 ### Notice : There are always some risks associated with unknown proxies. Please do not log into your account. Or only use an account you can afford to lose in the worst case scenario.
 I'm currently developing an alternative version of this project. Should it see the light of the day, it'll use TOR rather than SOCKS proxies.
