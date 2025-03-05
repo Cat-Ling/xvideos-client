@@ -46,6 +46,8 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run make -- --arch=arm64 --platform=win32
+      - name: List files in the directory for debugging
+        run: dir out/make/zip/win32/arm64/
       - name: Recompress zip
         run: |
           Expand-Archive -Path out/make/zip/win32/arm64/*.zip -DestinationPath out/make/zip/win32/arm64/
