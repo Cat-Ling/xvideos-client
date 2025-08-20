@@ -24,7 +24,7 @@
     "electron": "37.2.5"
   },
   "dependencies": {
-    "@ghostery/adblocker-electron": "2.6.1",
+    "@ghostery/adblocker-electron": "2.11.4",
     "axios": "1.11.0",
     "cross-fetch": "4.1.0",
     "electron-squirrel-startup": "1.0.1",
