@@ -10,7 +10,7 @@ I'm currently developing an alternative version of this project. Should it see t
 - Portable - All your data stays in the XVideos Client directory, leaving less traces behind on the system it is being run on.
 **All of the data, including session, cache and cookies is saved in the `'/xdata'` directory. Make sure you delete it before redistributing the program.**
   
-- SOCKS5 - A list of proxies is feteched from [monosans/proxy-list](https://raw.githubusercontent.com/monosans/proxy-list/main/proxies_anonymous/socks5.txt) and a random proxy is chosen every time. 
+- SOCKS5 - A list of proxies is feteched from [monosans/proxy-list](https://raw.githubusercontent.com/monosans/proxy-list/refs/heads/main/proxies/socks5.txt) and a random proxy is chosen every time. 
 - The client contains some __hidden XVideos proxy domains__ that are only accessible through this client.
   You can cycle through proxies by pressing __CTRL+SPACE__ if the page fails to load.
   
@@ -64,3 +64,4 @@ These are some keyboard shortcuts for ease of use :
 |Go To The Next Page|`CTRL+RIGHT-ARROW`            |Goes Forward. Basically undoes Backward.   
 #
 <p align="center">Cat-Ling | License : GPL-3.</p>
+
