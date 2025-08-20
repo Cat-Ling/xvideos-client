@@ -12,7 +12,7 @@ async function GetProxy() {
   return new Promise(async (resolve, reject) => {
     try {
       console.log('Fetching proxy list...');
-      const response = await axios.get('https://raw.githubusercontent.com/monosans/proxy-list/main/proxies_anonymous/socks5.txt');
+      const response = await axios.get('https://raw.githubusercontent.com/monosans/proxy-list/refs/heads/main/proxies/socks5.txt');
       global.proxyList = response.data.split('\n').filter(Boolean);
       console.log('Proxy list fetched successfully.');
       resolve();
@@ -51,3 +51,4 @@ module.exports = {
   GetProxy,
   ConnectProxy,
 };
+
