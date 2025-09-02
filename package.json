@@ -21,7 +21,7 @@
     "@electron-forge/maker-squirrel": "7.8.2",
     "@electron-forge/maker-zip": "7.8.1",
     "@electron-forge/plugin-auto-unpack-natives": "7.8.1",
-    "electron": "37.2.5"
+    "electron": "37.4.0"
   },
   "dependencies": {
     "@ghostery/adblocker-electron": "2.11.4",
