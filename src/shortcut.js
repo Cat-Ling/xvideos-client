@@ -9,6 +9,9 @@ function createurlbarWindow(mainWindow) {
     height: 600,
     webPreferences: {
       nodeIntegration: false,
+      contextIsolation: true,
+      sandbox: true,
+      webSecurity: true,
     },
     parent: mainWindow,
     modal: false,
@@ -181,3 +184,4 @@ function registerShortcuts(mainWindow) {
 }
 
 module.exports = registerShortcuts;
+
