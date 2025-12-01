@@ -28,7 +28,7 @@
     "axios": "1.13.1",
     "cross-fetch": "4.1.0",
     "electron-squirrel-startup": "1.0.1",
-    "@npmcli/fs": "2.1.2",
+    "@npmcli/fs": "5.0.0",
     "glob": "11.0.3"
   },
   "homepage": "https://github.com/Cat-Ling"
